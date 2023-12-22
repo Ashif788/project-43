@@ -32,11 +32,10 @@ db.connect((err) => {
     return;
   }
 
+
   console.log('Connected to the database');
   
-  // Now you can perform database operations here
-
-  // Don't forget to close the connection when you're done with it
+ 
  
 });
 
@@ -44,7 +43,7 @@ db.connect((err) => {
 
 const institute=require('./Routes/Institute')
 const user=require('./Routes/user')
-const password=require('./Routes/Password')
+
 const logincheck=require('./Routes/login')
 const userdata=require('./Routes/Userdata')
 const addstudent=require('./Routes/AddStudent')
@@ -71,7 +70,7 @@ const log = require('./Routes/Logout');
 app.use('/',user(db));
 app.use('/',institute(db));
 
-app.use('/',password(db));
+
 app.use('/',logincheck(db));
 app.use('/',userdata(db))
 app.use('/',addstudent(db))
