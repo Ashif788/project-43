@@ -42,7 +42,7 @@ db.connect((err) => {
 
 
 const institute=require('./Routes/Institute')
-const user=require('./Routes/user')
+
 
 const logincheck=require('./Routes/login')
 const userdata=require('./Routes/Userdata')
@@ -67,7 +67,7 @@ const attendance = require('./Routes/AttendanceStudent');
 const addattendance = require('./Routes/Attendance');
 const log = require('./Routes/Logout');
 
-app.use('/',user(db));
+
 app.use('/',institute(db));
 
 

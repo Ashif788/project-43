@@ -86,6 +86,25 @@ module.exports = (db) => {
         }
       });
     });
+
+    router.get('/api/totalattendancegraph/:IId', (req, res) => {
+      const { date } = req.query;
+      const iid = req.params.IId;
+      
+      
+    
+      const sql = "SELECT AClassID, SUM(CASE WHEN status = 'present' THEN 1 ELSE 0 END) as present, SUM(CASE WHEN status = 'absent' THEN 1 ELSE 0 END) as absent FROM attendance WHERE AInstituteID = ? AND Attendance_Date = ? GROUP BY aclassid;";
+    
+      db.query(sql, [ iid,date], (error, result) => {
+        if (error) {
+          console.error('Database error:', error);
+          res.status(500).json({ error: 'Data retrieval failed' });
+        } else {
+          console.log('Data fetched successfully',result);
+          res.json(result);
+        }
+      });
+    });
     
     return router;
 };
